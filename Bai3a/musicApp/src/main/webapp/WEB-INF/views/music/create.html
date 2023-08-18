@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+
+</head>
+<body>
+<form th:action="@{/music/create}" th:object="${songForm}"
+      method="POST" novalidate="novalidate" enctype="multipart/form-data">
+  <table border="1" class="table">
+    <tr>
+      <td>
+        <label >Id</label>
+        <input type="text" th:field="*{id}">
+      </td>
+      <td>
+        <label >NameSong</label>
+        <input type="text" th:field="*{nameSong}" ></td>
+
+      <td>
+        <label >PerformanceArtist</label>
+        <input type="text" th:field="*{performanceArtist} "></td>
+      <td>
+        <span th:each="h : ${types}" >
+          <input type="checkbox" th:field="*{kind}" th:value="${h}" th:id="${h}"> <label th:text="${h}" th:for="${h}"></label>
+        </span>
+      </td>
+      <td>
+        <label >SongPath</label>
+        <input type="file" th:field="*{songPath}">
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="upload">
+</form>
+</body>
+</html>
