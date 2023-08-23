@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<table border="1" class="table">
+    <h1 style="text-align: center">Bức ảnh của ngày</h1>
+
+    <tr>
+        <th>Id</th>
+        <th>View</th>
+        <th>Author</th>
+        <th>Feedback</th>
+    </tr>
+    <tr th:each="b : ${picture}" th:object="${b}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{view}"></td>
+        <td th:text="*{author}"></td>
+        <td th:text="*{feedback}"></td>
+    </tr>
+</table>
+<button>
+    <a href="create.html" >Thêm đánh giá</a>
+</button>
+</body>
+</html>
