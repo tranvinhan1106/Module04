@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+</head>
+<table border="1" class="table">
+  <h1 style="text-align: center">Blog Cá Nhân</h1>
+
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Detail</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr th:each="b : ${blogs}" th:object="${b}">
+    <td th:text="*{id}"></td>
+    <td th:text="*{name}"></td>
+    <td th:text="*{title}"></td>
+    <td><a th:href="@{/blog/view(id=${b.id})}">Chi tiết</a></td>
+    <td><a th:href="@{/blog/edit(id=${b.id})}">Chỉnh sửa</a></td>
+    <td><a th:href="@{/blog/delete(id=${b.id})}">Xóa</a></td>
+  </tr>
+</table>
+<button><a href="create.html">Tạo Blog</a></button>
+</body>
+</html>

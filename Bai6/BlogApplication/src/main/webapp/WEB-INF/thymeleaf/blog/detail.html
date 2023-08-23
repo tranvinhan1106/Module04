@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h3 style="text-align: center">View Blog</h3>
+
+</div>
+<p>
+  <a href="list.html">
+    Back to list
+  </a>
+</p>
+  <div class="cusdetail">
+    <label>Name:</label><br>
+    <label th:text="${blogs.name}"></label><br>
+  </div>
+  <div class="cusdetail">
+    <label>Tiller:</label><br>
+    <label th:text="${blogs.title}"></label><br>
+  </div>
+  <div class="cusdetail">
+    <label>Content:</label><br>
+    <label th:text="${blogs.content}"></label>
+  </div>
+</div>
+<hr>
+<hr>
+</body>
+</html>

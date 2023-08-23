@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Edit Blog</h3>
+<p>
+  <a href="list.html">
+    Back to list
+  </a>
+</p>
+<div>
+  <form th:action="@{/blog/edit}" th:object="${blog}"
+        method="POST" novalidate="novalidate">
+    <input type="hidden" th:field="*{id}"/>
+    <span>Name</span>
+    <br>
+    <input type="text" th:field="*{name}">
+    <br>
+    <span>Title</span>
+    <br>
+    <input type="text" th:field="*{title}">
+    <br>
+    <span>Content</span>
+    <br>
+    <textarea th:field="*{content}"></textarea>
+    <br>
+    <input type="submit" value="Edit"/>
+  </form>
+</div>
+
+</body>
+</html>
