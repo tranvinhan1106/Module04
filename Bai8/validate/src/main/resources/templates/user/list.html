@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+</head>
+<body>
+<div>
+    <h1 style="text-align: center">List User</h1>
+</div>
+<button><a th:href="@{/user/create}">Create new user</a></button>
+<table border="1" class="table">
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="b : ${users}" th:object="${b}">
+        <td th:text="*{idUser}"></td>
+        <td th:text="*{firstName}"></td>
+        <td th:text="*{lastName}"></td>
+        <td th:text="*{age}"></td>
+        <td th:text="*{phoneNumber}"></td>
+        <td th:text="*{email}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new user</title>
+</head>
+<body>
+<h1>Create User</h1>
+<form th:action="@{/user/create}" method="post" th:object="${users}">
+    <table>
+        <tr>
+            <td>Id</td>
+            <td><input type="text" th:field="*{idUser}"></td>
+            <td><span  th:errors="*{idUser}"></span></td>
+        </tr>
+        <tr>
+            <td>FirstName</td>
+            <td><input type="text" th:field="*{firstName}"></td>
+            <td><span  th:errors="*{firstName}"></span></td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td><input type="text" th:field="*{lastName}"></td>
+            <td><span th:errors="*{lastName}"></span></td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="text" th:field="*{age}"></td>
+            <td><span  th:errors="*{age}"></span></td>
+        </tr>
+        <tr>
+            <td>PhoneNumber</td>
+            <td><input type="text" th:field="*{phoneNumber}"></td>
+            <td><span  th:errors="*{phoneNumber}"></span></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+            <td><span th:errors="*{email}"></span></td>
+        </tr>
+    </table>
+    <input type="submit" value="Create user"/>
+</form>
+
+</body>
+</html>
