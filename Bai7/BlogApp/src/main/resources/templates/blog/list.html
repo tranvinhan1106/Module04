@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Blog</title>
+    <style>
+        #a{
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+</head>
+<body>
+<div>
+    <h1 style="text-align: center">List Blog</h1>
+</div>
+ <button id="a"><a th:href="@{/blog/create}">Create blog</a></button>
+<br>
+<div>
+    <form th:action="@{/blog/search}" method="post" >
+        <span>Tìm kiếm  :</span><input type="text" name="search"><input type="submit" value="Search">
+    </form>
+</div>
+<br>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Detail</th>
+    </tr>
+    <tr th:each="b : ${blog}" th:object="${b}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{title}"></td>
+        <td th:text="*{category.categoryName}"></td>
+        <td>
+            <a th:href="@{/blog/delete(id=*{id})}">Xóa</a>
+        </td>
+        <td>
+            <a th:href="@{/blog/edit(id=*{id})}">Sửa</a>
+        </td>
+        <td>
+            <a th:href="@{/blog/detail(id=*{id})}">Chi tiết</a>
+        </td>
+    </tr>
+</table>
+<div style="text-align: center" th:if="${blog.totalPages > 1}">
+    <a th:each="pageNumber: ${pageNumbers}"
+       th:href="@{/blog/list(page=${pageNumber}, size=${blog.size})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber == blog.number + 1} ? active"></a>
+</div>
+</body>
+</html>
