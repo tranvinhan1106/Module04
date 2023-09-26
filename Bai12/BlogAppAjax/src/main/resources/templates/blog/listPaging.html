@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List Paging</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+</head>
+<body>
+<div>
+    <h1 style="text-align: center">ListPaging Blog</h1>
+</div>
+<p>
+    <a href="/blog/list">Back to list</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody id="body_table" class="table">
+    </tbody>
+</table>
+<button id="more_btn">Load More</button>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let page = 0;
+        const pageSize = 5;
+
+        function showList() {
+            $.ajax({
+                url: "/api/blog/listPaging",
+                type: "GET",
+                data: {
+                    page: page,
+                    size: pageSize
+                },
+                success: function (data) {
+                    let content = "";
+                    for (let i = 0; i < data.length; i++) {
+                        content += getBlogHtml(data[i]);
+                    }
+                    $("#body_table").append(content);
+                    if (data.length === pageSize) {
+                        $("#more_btn").show();
+                    } else {
+                        $("#more_btn").hide();
+                    }
+                }
+            });
+        }
+
+        function getBlogHtml(blog) {
+            return "<tr>" +
+                "<td>" + blog.id + "</td>" +
+                "<td>" + blog.name + "</td>" +
+                "<td>" + blog.title + "</td>" +
+                "<td>" + blog.category.categoryName + "</td>" +
+                "<td><a href='/blog/delete?id=" + blog.id + "'>Xóa</a></td>" +
+                "<td><a href='/blog/edit?id=" + blog.id + "'>Sửa</a></td>" +
+                "<td><a href='/blog/detail?id=" + blog.id + "'>Chi Tiết</a></td>" +
+                "</tr>";
+        }
+
+        $("#more_btn").click(function () {
+            page++;
+            showList();
+        });
+
+        // Load initial data
+        showList();
+    });
+</script>
+</body>
+</html>
