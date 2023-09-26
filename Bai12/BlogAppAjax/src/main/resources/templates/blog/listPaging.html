@@ -29,7 +29,7 @@
     </tbody>
 </table>
 <button id="more_btn">Load More</button>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         let page = 0;
@@ -37,7 +37,7 @@
 
         function showList() {
             $.ajax({
-                url: "/api/blog/listPaging",
+                url: "http://localhost:8080/api/blog/listPaging",
                 type: "GET",
                 data: {
                     page: page,
@@ -74,8 +74,6 @@
             page++;
             showList();
         });
-
-        // Load initial data
         showList();
     });
 </script>
